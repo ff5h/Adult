@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adult.App.Android", "Adult.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adult.App.iOS", "Adult.App\Adult.App.iOS\Adult.App.iOS.csproj", "{96F1A0A1-C6D7-44EC-92AF-3416D5B9822C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adult.App", "Adult.App\Adult.App\Adult.App.csproj", "{84AA1D87-78F6-43E1-8C0A-EE45A4EAA3A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adult.App", "Adult.App\Adult.App\Adult.App.csproj", "{84AA1D87-78F6-43E1-8C0A-EE45A4EAA3A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adult.API", "Adult.API\Adult.API.csproj", "{F1AE402B-7064-4779-AD50-441378A6DCA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adult.APIqwe", "Adult.API\Adult.APIqwe.csproj", "{F1AE402B-7064-4779-AD50-441378A6DCA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobiles", "Mobiles", "{10EBEA7A-4695-4C12-A88E-FDAEF735EF8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,6 +92,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4AD9A41F-B08C-4362-8579-D56BB6BBA878} = {10EBEA7A-4695-4C12-A88E-FDAEF735EF8D}
+		{96F1A0A1-C6D7-44EC-92AF-3416D5B9822C} = {10EBEA7A-4695-4C12-A88E-FDAEF735EF8D}
+		{84AA1D87-78F6-43E1-8C0A-EE45A4EAA3A7} = {10EBEA7A-4695-4C12-A88E-FDAEF735EF8D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B4E926CC-0ADF-43F4-848A-C56CFBF6931F}
