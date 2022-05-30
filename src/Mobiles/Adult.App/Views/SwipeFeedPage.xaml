@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Adult.App.Views.SwipeFeedPage"
+             xmlns:vm="clr-namespace:Adult.App.ViewModels" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:controls="http://xamarin.com/schemas/2014/forms/background"
+             Shell.NavBarIsVisible="False"
+             xmlns:s="clr-namespace:System;assembly=mscorlib">
+             
+    <ContentPage.BindingContext>
+        <vm:SwipeFeedViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowSpacing="0" ColumnSpacing="0">
+        <controls:MaterialContentView Background="{controls:BgProvider Color=White, CornerRadius=15}"
+                                      Margin="30">
+            <ffimageloading:CachedImage CacheType="None" DownsampleToViewSize="true"
+                                        Aspect="AspectFill"
+			                            Source="{Binding PhotoUrl}"/>
+        </controls:MaterialContentView>
+        <StackLayout VerticalOptions="End"
+                     HorizontalOptions="Center"
+                     Orientation="Horizontal"
+                     Margin="40"
+                     Spacing="30">
+            <controls:MaterialContentView Background="{controls:BgProvider Color=White, Elevation=10, IsRippleEnabled=True, RippleColor=Black}" 
+                                          HeightRequest="80"
+                                          WidthRequest="80"
+                                          IsCircle="True"
+                                          ClickedCommand="{Binding PutMark}">
+                <controls:MaterialContentView.ClickedCommandParameter>
+                    <s:Boolean>False</s:Boolean>
+                </controls:MaterialContentView.ClickedCommandParameter>
+                <Label Text="X"
+                       TextColor="Red"
+                       FontSize="64"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+            </controls:MaterialContentView>
+            <controls:MaterialContentView Background="{controls:BgProvider Color=White, Elevation=10, IsRippleEnabled=True, RippleColor=Black}" 
+                                          HeightRequest="80"
+                                          WidthRequest="80"
+                                          IsCircle="True"
+                                          ClickedCommand="{Binding PutMark}">
+                <controls:MaterialContentView.ClickedCommandParameter>
+                    <s:Boolean>True</s:Boolean>
+                </controls:MaterialContentView.ClickedCommandParameter>
+                <Label Text="&#60;3"
+                       TextColor="Red"
+                       FontSize="64"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Rotation="-90"/>
+            </controls:MaterialContentView>
+        </StackLayout>
+    </Grid>
+</ContentPage>
