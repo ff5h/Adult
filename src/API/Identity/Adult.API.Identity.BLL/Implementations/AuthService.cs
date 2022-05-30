@@ -1,4 +1,4 @@
-﻿using Adult.API.Identity.BLL.DTO;
+﻿using Adult.API.Identity.BLL.DTOs;
 using Adult.API.Identity.BLL.DTOs;
 using Adult.API.Identity.BLL.Interfaces;
 using Adult.API.Identity.DAL.Entities;
