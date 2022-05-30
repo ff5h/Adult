@@ -71,11 +71,11 @@ namespace Adult.API.Identity.BLL.Implementations
             };
         }
 
-        public UserInfoDTO GetUser()
+        public GetUserResponseDTO GetUser()
         {
             var httpRequest = _accessor.HttpContext.Request;
             var userId = _jwtTokenManager.GetUserIdFromHeaderToken(httpRequest);
-            return new UserInfoDTO()
+            return new GetUserResponseDTO()
             {
                 Id = userId,
             };

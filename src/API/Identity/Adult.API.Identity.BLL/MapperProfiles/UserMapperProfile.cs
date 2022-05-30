@@ -9,7 +9,7 @@ namespace Adult.API.Identity.BLL.MapperProfiles
         public UserMapperProfile()
         {
             CreateMap<UserDTO, User>();
-            CreateMap<UserInfoDTO, User>();
+            CreateMap<GetUserResponseDTO, User>();
         }
     }
 }

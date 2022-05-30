@@ -1,6 +1,6 @@
 ﻿namespace Adult.API.Identity.BLL.DTOs
 {
-    public class UserInfoDTO
+    public class GetUserResponseDTO
     {
         public string Id { get; set; }
     }

@@ -6,6 +6,6 @@ namespace Adult.API.Identity.BLL.Interfaces
     {
         Task RegisterAsync(RegistrationRequestDTO model);
         Task<LoginResponseDTO> LoginAsync(LoginRequestDTO model);
-        UserInfoDTO GetUser();
+        GetUserResponseDTO GetUser();
     }
 }
