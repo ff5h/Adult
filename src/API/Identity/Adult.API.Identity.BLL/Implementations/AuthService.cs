@@ -3,6 +3,7 @@ using Adult.API.Identity.BLL.DTOs;
 using Adult.API.Identity.BLL.Interfaces;
 using Adult.API.Identity.DAL.Entities;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -12,21 +13,25 @@ using System.Text;
 
 namespace Adult.API.Identity.BLL.Implementations
 {
-    public class UserService : IUserService
+    public class AuthService : IAuthService
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
-        private readonly IUserAccesor _userAccesor;
+        private readonly IJwtTokenManager _jwtTokenManager;
+        private readonly IHttpContextAccessor _accessor;
 
-        public UserService(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration configuration, IMapper mapper, IUserAccesor userAccesor)
+        public AuthService(UserManager<User> userManager,
+                           SignInManager<User> signInManager,
+                           IMapper mapper,
+                           IHttpContextAccessor accessor,
+                           IJwtTokenManager jwtTokenManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _configuration = configuration;
             _mapper = mapper;
-            _userAccesor = userAccesor;
+            _accessor = accessor;
+            _jwtTokenManager = jwtTokenManager;
         }
 
         public async Task RegisterAsync(RegistrationRequestDTO model)
@@ -57,40 +62,22 @@ namespace Adult.API.Identity.BLL.Implementations
             var authResult = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
             if (authResult != SignInResult.Success)
             {
-                throw new Exception("HZ");
+                throw new Exception("Пароль не верный");
             }
-            var token = CreateToken(user);
+            var token = _jwtTokenManager.CreateToken(user);
             return new LoginResponseDTO()
             {
-                Token = token,
+                Token = token
             };
         }
 
-        public string CreateToken(User user)
+        public UserInfoDTO GetUser()
         {
-            var claims = new List<Claim> { new Claim(JwtRegisteredClaimNames.NameId, user.UserName) };
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-            var credentials = new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha512Signature);
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(7),
-                SigningCredentials = credentials
-            };
-            var tokenHandler = new JwtSecurityTokenHandler();
-
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            return tokenHandler.WriteToken(token);
-        }
-
-        public async Task<UserInfoDTO> GetUserAsync()
-        {
-            var user = await _userAccesor.GetUserAsync();
+            var httpRequest = _accessor.HttpContext.Request;
+            var userId = _jwtTokenManager.GetUserIdFromHeaderToken(httpRequest);
             return new UserInfoDTO()
-            { 
-                Id = user.Id,
+            {
+                Id = userId,
             };
         }
     }

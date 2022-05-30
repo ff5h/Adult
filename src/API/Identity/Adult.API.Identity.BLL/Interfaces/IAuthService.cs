@@ -2,10 +2,10 @@
 
 namespace Adult.API.Identity.BLL.Interfaces
 {
-    public interface IUserService
+    public interface IAuthService
     {
         Task RegisterAsync(RegistrationRequestDTO model);
         Task<LoginResponseDTO> LoginAsync(LoginRequestDTO model);
-        Task<UserInfoDTO> GetUserAsync();
+        UserInfoDTO GetUser();
     }
 }

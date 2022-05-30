@@ -2,9 +2,8 @@
 
 namespace Adult.API.Identity.BLL.Interfaces
 {
-    public interface IUserAccesor
+    public interface IJwtGenerator
     {
-        Task<User> GetUserAsync();
-        string GetUserId();
+        string CreateToken(User user);
     }
 }
