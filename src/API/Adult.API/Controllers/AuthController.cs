@@ -20,7 +20,7 @@ namespace Adult.API.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        public async Task<IActionResult> LoginAsync([FromBody] LoginRequest request)
         {
             var requestDTO = _mapper.Map<LoginRequestDTO>(request);
             var result = await _authService.LoginAsync(requestDTO);
@@ -29,7 +29,7 @@ namespace Adult.API.Controllers
 
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register([FromBody] RegistrationRequest request)
+        public async Task<IActionResult> RegisterAsync([FromBody] RegistrationRequest request)
         {
             var requestDTO = _mapper.Map<RegistrationRequestDTO>(request);
             await _authService.RegisterAsync(requestDTO);

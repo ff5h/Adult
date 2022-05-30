@@ -1,4 +1,4 @@
-﻿namespace Adult.API.Identity.BLL.DTO
+﻿namespace Adult.API.Identity.BLL.DTOs
 {
     public class UserDTO
     {

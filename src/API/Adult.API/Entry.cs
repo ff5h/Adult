@@ -1,17 +1,14 @@
 ﻿using Adult.API.Core.DAL;
 using Adult.API.Identity.BLL;
 using Adult.API.Identity.BLL.Configurations;
-using Adult.API.Identity.BLL.MapperProfiles;
 using Adult.API.Identity.DAL;
 using Adult.API.Identity.DAL.Entities;
-using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.IdentityModel.Tokens.Jwt;
-using System.Reflection;
 using System.Text;
 
 namespace Adult.API
@@ -87,13 +84,13 @@ namespace Adult.API
         {
             services.AddSwaggerGen(swagger =>
             {
-                ////This is to generate the Default UI of Swagger Documentation    
-                //swagger.SwaggerDoc("v1", new OpenApiInfo
-                //{
-                //    Version = "v1",
-                //    Title = "ASP.NET 6 Web API",
-                //    Description = "Authentication and Authorization in ASP.NET 6 with JWT and Swagger"
-                //});
+                //This is to generate the Default UI of Swagger Documentation    
+                swagger.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "ASP.NET 6 Web API",
+                    Description = "Authentication and Authorization in ASP.NET 6 with JWT and Swagger"
+                });
                 // To Enable authorization using Swagger (JWT)    
                 swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
