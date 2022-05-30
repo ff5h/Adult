@@ -1,15 +1,9 @@
 ﻿using Adult.API.Identity.BLL.DTOs;
-using Adult.API.Identity.BLL.DTOs;
 using Adult.API.Identity.BLL.Interfaces;
 using Adult.API.Identity.DAL.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace Adult.API.Identity.BLL.Implementations
 {
@@ -64,7 +58,7 @@ namespace Adult.API.Identity.BLL.Implementations
             {
                 throw new Exception("Пароль не верный");
             }
-            var token = _jwtTokenManager.CreateToken(user);
+            var token = _jwtTokenManager.CreateToken(user.Email, user.Id);
             return new LoginResponseDTO()
             {
                 Token = token

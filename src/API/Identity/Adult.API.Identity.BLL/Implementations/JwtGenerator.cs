@@ -1,6 +1,5 @@
 ﻿using Adult.API.Identity.BLL.Configurations;
 using Adult.API.Identity.BLL.Interfaces;
-using Adult.API.Identity.DAL.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -22,12 +21,12 @@ namespace Adult.API.Identity.BLL.Implementations
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtConfiguration.Key));
             _credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
         }
-        public string CreateToken(User user)
+        public string CreateToken(string email, string userId)
         {
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id)
+                new Claim(JwtRegisteredClaimNames.Email, email),
+                new Claim(JwtRegisteredClaimNames.Sub, userId)
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor

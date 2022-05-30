@@ -1,6 +1,5 @@
 ﻿using Adult.API.Identity.BLL.Extentions;
 using Adult.API.Identity.BLL.Interfaces;
-using Adult.API.Identity.DAL.Entities;
 using Microsoft.AspNetCore.Http;
 using System.IdentityModel.Tokens.Jwt;
 
@@ -17,9 +16,9 @@ namespace Adult.API.Identity.BLL.Implementations
             _tokenHandler = tokenHandler;
         }
 
-        public string CreateToken(User user)
+        public string CreateToken(string email, string userId)
         {
-            return _jwtGenerator.CreateToken(user);
+            return _jwtGenerator.CreateToken(email, userId);
         }
 
         public string GetUserIdFromHeaderToken(HttpRequest request)
@@ -28,10 +27,6 @@ namespace Adult.API.Identity.BLL.Implementations
 
             var jwtToken = _tokenHandler.ReadJwtToken(token);
             var claim = jwtToken.Claims.SingleOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub);
-            if (claim == null)
-            {
-                throw new Exception("JwtRegisteredClaimNames.Sub more when one");
-            }
             return claim.Value;
         }
     }

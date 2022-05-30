@@ -1,11 +1,10 @@
-﻿using Adult.API.Identity.DAL.Entities;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace Adult.API.Identity.BLL.Interfaces
 {
     public interface IJwtTokenManager
     {
-        string CreateToken(User user);
+        string CreateToken(string email, string userId);
         string GetUserIdFromHeaderToken(HttpRequest request);
     }
 }

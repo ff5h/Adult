@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <Folder Include="MapperProfiles\Core\" />
+    <Folder Include="Middlewares\" />
   </ItemGroup>
 
 </Project>
